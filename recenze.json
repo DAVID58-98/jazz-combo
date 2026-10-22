@@ -1,0 +1,18 @@
+{
+  "_navod": "Návod je v souboru NAVOD-recenze-a-reference.md",
+  "recenze": [
+    {
+      "vzor": true,
+      "_poznamka": "VZOR, na webu se nezobrazí. Přepište ho skutečnou recenzí na Jazz Combo a smažte řádek \"vzor\": true (i s čárkou).",
+      "jmeno": "Jana K.",
+      "datum": "2026-11-20",
+      "akce": { "cs": "galavečer", "en": "gala evening", "de": "Galaabend" },
+      "text": {
+        "cs": "Sem vložte text recenze přesně tak, jak ho klient napsal.",
+        "en": "",
+        "de": ""
+      },
+      "zdroj": "e-mail"
+    }
+  ]
+}

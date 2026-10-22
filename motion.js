@@ -1,5 +1,5 @@
 /* =========================================================
-   motion.js — pohybové efekty a vylepšení webů souborů (verze 15)
+   motion.js — pohybové efekty a vylepšení webů souborů (verze 17)
    Načítá se s defer. Vše je nadstavba nad hotovým HTML:
    když skript chybí, web funguje a vypadá jako dřív.
    ========================================================= */
@@ -18,7 +18,7 @@ var TX={
 }[LANG]||null;
 if(!TX)TX={thanks:'Děkujeme!',next:'Další recenze',prev:'Předchozí recenze',songs:function(n){return n+' skladeb'},kTitle:'Termíny koncertů',kAll:'Všechny termíny',kLoad:'…',kErr:'Termíny se nepodařilo načíst.',kNone:'Žádné termíny.',kOurs:'tato sestava',close:'Zavřít',kCount:function(n){return n+''}};
 /* počet teček loga podle sestavy */
-var HOST=location.hostname,ENSK=document.documentElement.getAttribute('data-ens')||(/combo/.test(HOST)?'combo':/quintet/.test(HOST)?'quintet':/quartet/.test(HOST)?'quartet':/trio/.test(HOST)?'trio':'duo'),DOTS={duo:2,trio:3,quartet:4,quintet:5,combo:8}[ENSK];
+var HOST=location.hostname,ENSK=document.documentElement.getAttribute('data-ens')||(/combo/.test(HOST)?'combo':/quartet/.test(HOST)?'quartet':/trio/.test(HOST)?'trio':'duo'),DOTS={duo:2,trio:3,quartet:4,combo:8}[ENSK];
 var ENSNAME='Jazz '+ENSK.charAt(0).toUpperCase()+ENSK.slice(1);
 
 function $(s,r){return (r||document).querySelector(s)}
@@ -159,6 +159,14 @@ later('benefits',function(){
     if(ic==='trumpet'){A(q('.valves',svg),[{transform:'translateY(0)'},{transform:'translateY(2px)',offset:.2},{transform:'translateY(0)',offset:.4},{transform:'translateY(2px)',offset:.6},{transform:'translateY(0)'}],{duration:700});
       A(svg,[{transform:'rotate(0)'},{transform:'rotate(-6deg)',offset:.35},{transform:'rotate(2deg)',offset:.7},{transform:'rotate(0)'}],{duration:800,easing:'ease-in-out'});
       ['.s1','.s2'].forEach(function(c,k){A(q(c,svg),[{opacity:0,transform:'translateX(0)'},{opacity:1,offset:.3},{opacity:0,transform:'translateX(5px)'}],{duration:700,delay:120+k*120,iterations:2})});return}
+    /* v17 (Jazz Combo): notový pult – noty vyletí; motýlek – zavrtí se a zajiskří */
+    if(ic==='stand'){var dk=q('.desk',svg);pivot(dk,26,28);
+      A(dk,[{transform:'rotate(0)'},{transform:'rotate(-5deg)',offset:.3},{transform:'rotate(3deg)',offset:.65},{transform:'rotate(0)'}],{duration:750,easing:'ease-in-out'});
+      ['.f1','.f2'].forEach(function(c,k){A(q(c,svg),[{opacity:0,transform:'translate(0,4px) scale(.6)'},{opacity:1,transform:'translate(0,0) scale(1)',offset:.3},{opacity:0,transform:'translate('+(k?-5:5)+'px,-12px) scale(1)'}],{duration:1000,delay:120+k*220,easing:'ease-out'})});return}
+    if(ic==='bowtie'){var ti=q('.tie',svg),kn=q('.knot',svg);pivot(ti,26,26);
+      A(ti,[{transform:'rotate(0)'},{transform:'rotate(-12deg)',offset:.25},{transform:'rotate(9deg)',offset:.5},{transform:'rotate(-4deg)',offset:.75},{transform:'rotate(0)'}],{duration:850,easing:'ease-in-out'});
+      A(kn,[{transform:'scale(1)'},{transform:'scale(1.25)',offset:.4},{transform:'scale(1)'}],{duration:500,delay:200,easing:'cubic-bezier(.34,1.56,.64,1)'});
+      ['.sp1','.sp2'].forEach(function(c,k){A(q(c,svg),[{opacity:0,transform:'scale(.3) rotate(0)'},{opacity:1,transform:'scale(1.1) rotate(45deg)',offset:.45},{opacity:0,transform:'scale(.6) rotate(90deg)'}],{duration:700,delay:250+k*160})});return}
     if(ic==='logo8'){$$('.ring8 circle',svg).forEach(function(d,k){A(d,[{transform:'scale(1)'},{transform:'scale(1.7)',offset:.35},{transform:'scale(1)'}],{duration:420,delay:k*70,easing:'cubic-bezier(.34,1.56,.64,1)'})});return}
     if(ic==='doc'){var ck=q('.chk',svg);A(ck,[{strokeDashoffset:1},{strokeDashoffset:0}],{duration:520,delay:120,easing:'cubic-bezier(.6,0,.3,1)'});
       A(svg,[{transform:'rotate(0)'},{transform:'rotate(-5deg)',offset:.3},{transform:'rotate(0)'}],{duration:600,easing:'ease-out'});return}
@@ -269,6 +277,7 @@ later('reviews',function(){
     last.style.transition='transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s';layout();show(last);
     setTimeout(function(){last.style.transition='';last._out=0},RM?0:470)}
   var nb=$('#revNextBtn'),pb=$('#revPrevBtn');
+  if(cards.length<2){if(nb)nb.style.display='none';if(pb)pb.style.display='none';return}  /* jediná recenze: bez šipek a swipu */
   if(nb)nb.addEventListener('click',function(){next(1)});
   if(pb)pb.addEventListener('click',prev);
   st.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();next(1)}else if(e.key==='ArrowLeft'){e.preventDefault();prev()}});

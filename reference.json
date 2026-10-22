@@ -1,0 +1,121 @@
+{
+  "_navod": "Návod je v souboru NAVOD-recenze-a-reference.md",
+  "reference": [
+    {
+      "nazev": "Reduta Jazz Club",
+      "popis": {
+        "cs": "Praha · pravidelná vystoupení",
+        "en": "Prague · regular performances",
+        "de": "Prag · regelmäßige Auftritte"
+      }
+    },
+    {
+      "nazev": "Hotel Augustine",
+      "popis": {
+        "cs": "Praha · pravidelná vystoupení",
+        "en": "Prague · regular performances",
+        "de": "Prag · regelmäßige Auftritte"
+      }
+    },
+    {
+      "nazev": "Le Palais Art Hotel",
+      "popis": {
+        "cs": "Praha · pravidelná vystoupení",
+        "en": "Prague · regular performances",
+        "de": "Prag · regelmäßige Auftritte"
+      }
+    },
+    {
+      "nazev": "Fairmont Golden Prague",
+      "popis": {
+        "cs": "Praha · hotelový večer",
+        "en": "Prague · hotel evening",
+        "de": "Prag · Hotelabend"
+      }
+    },
+    {
+      "nazev": "ČEZ",
+      "popis": {
+        "cs": "firemní večer",
+        "en": "corporate evening",
+        "de": "Firmenabend"
+      }
+    },
+    {
+      "nazev": "ČESMAD Bohemia",
+      "popis": {
+        "cs": "firemní akce",
+        "en": "corporate event",
+        "de": "Firmenveranstaltung"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Karlovarské městské divadlo",
+        "en": "Karlovy Vary Municipal Theatre",
+        "de": "Stadttheater Karlsbad"
+      },
+      "popis": {
+        "cs": "pravidelná vystoupení",
+        "en": "regular performances",
+        "de": "regelmäßige Auftritte"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Zámek Zbraslav",
+        "en": "Zbraslav Chateau",
+        "de": "Schloss Zbraslav"
+      },
+      "popis": {
+        "cs": "společenský večer",
+        "en": "social evening",
+        "de": "Gesellschaftsabend"
+      }
+    },
+    {
+      "nazev": "Grand Casino Aš",
+      "popis": {
+        "cs": "VIP večer",
+        "en": "VIP evening",
+        "de": "VIP-Abend"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Notářská komora ČR",
+        "en": "Chamber of Notaries of the CR",
+        "de": "Notarkammer der Tschechischen Republik"
+      },
+      "popis": {
+        "cs": "reprezentativní večer prezidia",
+        "en": "presidium gala evening",
+        "de": "Präsidiumsabend"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Městská část Praha 12",
+        "en": "Prague 12 District",
+        "de": "Stadtbezirk Prag 12"
+      },
+      "popis": {
+        "cs": "Viniční podvečery",
+        "en": "Vineyard Evenings",
+        "de": "Weinbergabende"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Reprezentativní plesy měst",
+        "en": "Municipal balls",
+        "de": "Repräsentative Stadtbälle"
+      },
+      "popis": {
+        "cs": "Čechy a Morava",
+        "en": "Bohemia and Moravia",
+        "de": "Böhmen und Mähren"
+      }
+    }
+  ]
+}

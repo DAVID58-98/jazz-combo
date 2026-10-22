@@ -20,8 +20,9 @@
    1) Fotku nahrajte do /hudebnici/ pod přesným názvem (čtverec .webp, 400 × 400 px):
       frantisek-kukula.webp, marketa-greifonerova.webp, david-farek.webp,
       martin-juzl.webp, zdenek-kram.webp
-   2) Název bez přípony přidejte do seznamu "portraits" níže.
-      (David Kleňha, Jaroslav Bárta a Jan Greifoner už fotky mají.)
+   2) Nic dalšího není potřeba: stránka si fotku pod tímto názvem najde sama.
+      Dokud soubor chybí, zobrazují se iniciály. Seznam "portraits" níže
+      proto nechte prázdný. (Kleňha, Bárta a Greifoner už fotky mají.)
    ===================================================================== */
 window.JC_MEDIA = {
   photos: [
