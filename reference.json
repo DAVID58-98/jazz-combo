@@ -1,6 +1,23 @@
+
 {
   "_navod": "Návod je v souboru NAVOD-recenze-a-reference.md",
   "reference": [
+    {
+      "nazev": "Obecní dům Praha",
+      "popis": {
+        "cs": "Praha · slavnostní galavečer",
+        "en": "Prague · gala evening",
+        "de": "Prag · festlicher Galaabend"
+      }
+    },
+    {
+      "nazev": "Občanská plovárna Praha",
+      "popis": {
+        "cs": "Praha · firemní galavečer",
+        "en": "Prague · corporate gala",
+        "de": "Prag · Firmengala"
+      }
+    },
     {
       "nazev": "Reduta Jazz Club",
       "popis": {
@@ -12,41 +29,41 @@
     {
       "nazev": "Hotel Augustine",
       "popis": {
-        "cs": "Praha · pravidelná vystoupení",
-        "en": "Prague · regular performances",
-        "de": "Prag · regelmäßige Auftritte"
+        "cs": "Praha · společenské večery",
+        "en": "Prague · social evenings",
+        "de": "Prag · Gesellschaftsabende"
       }
     },
     {
       "nazev": "Le Palais Art Hotel",
       "popis": {
-        "cs": "Praha · pravidelná vystoupení",
-        "en": "Prague · regular performances",
-        "de": "Prag · regelmäßige Auftritte"
+        "cs": "Praha · společenské večery",
+        "en": "Prague · social evenings",
+        "de": "Prag · Gesellschaftsabende"
       }
     },
     {
       "nazev": "Fairmont Golden Prague",
       "popis": {
-        "cs": "Praha · hotelový večer",
-        "en": "Prague · hotel evening",
-        "de": "Prag · Hotelabend"
+        "cs": "Praha · hotelový galavečer",
+        "en": "Prague · hotel gala",
+        "de": "Prag · Hotelgala"
       }
     },
     {
       "nazev": "ČEZ",
       "popis": {
-        "cs": "firemní večer",
-        "en": "corporate evening",
-        "de": "Firmenabend"
+        "cs": "reprezentační ples",
+        "en": "corporate gala ball",
+        "de": "Repräsentationsball"
       }
     },
     {
       "nazev": "ČESMAD Bohemia",
       "popis": {
-        "cs": "firemní akce",
-        "en": "corporate event",
-        "de": "Firmenveranstaltung"
+        "cs": "slavnostní firemní večer",
+        "en": "corporate gala evening",
+        "de": "Festlicher Firmenabend"
       }
     },
     {
@@ -56,9 +73,9 @@
         "de": "Stadttheater Karlsbad"
       },
       "popis": {
-        "cs": "pravidelná vystoupení",
-        "en": "regular performances",
-        "de": "regelmäßige Auftritte"
+        "cs": "Karlovy Vary · pravidelná vystoupení",
+        "en": "Karlovy Vary · regular performances",
+        "de": "Karlsbad · regelmäßige Auftritte"
       }
     },
     {
@@ -68,17 +85,17 @@
         "de": "Schloss Zbraslav"
       },
       "popis": {
-        "cs": "společenský večer",
-        "en": "social evening",
-        "de": "Gesellschaftsabend"
+        "cs": "Praha · slavnostní večer",
+        "en": "Prague · gala evening",
+        "de": "Prag · festlicher Abend"
       }
     },
     {
       "nazev": "Grand Casino Aš",
       "popis": {
-        "cs": "VIP večer",
-        "en": "VIP evening",
-        "de": "VIP-Abend"
+        "cs": "Aš · VIP galavečer",
+        "en": "Aš · VIP gala evening",
+        "de": "Aš · VIP-Galaabend"
       }
     },
     {
@@ -90,7 +107,7 @@
       "popis": {
         "cs": "reprezentativní večer prezidia",
         "en": "presidium gala evening",
-        "de": "Präsidiumsabend"
+        "de": "Festlicher Präsidiumsabend"
       }
     },
     {
@@ -107,14 +124,26 @@
     },
     {
       "nazev": {
-        "cs": "Reprezentativní plesy měst",
-        "en": "Municipal balls",
-        "de": "Repräsentative Stadtbälle"
+        "cs": "Reprezentační plesy měst",
+        "en": "Municipal gala balls",
+        "de": "Repräsentationsbälle der Städte"
       },
       "popis": {
         "cs": "Čechy a Morava",
         "en": "Bohemia and Moravia",
         "de": "Böhmen und Mähren"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Firemní galavečery",
+        "en": "Corporate gala evenings",
+        "de": "Firmengalaabende"
+      },
+      "popis": {
+        "cs": "slavnostní a výroční události",
+        "en": "formal and anniversary events",
+        "de": "Festliche Veranstaltungen und Jubiläen"
       }
     }
   ]
