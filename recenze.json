@@ -1,18 +1,54 @@
+
 {
   "_navod": "Návod je v souboru NAVOD-recenze-a-reference.md",
   "recenze": [
     {
       "vzor": true,
-      "_poznamka": "VZOR, na webu se nezobrazí. Přepište ho skutečnou recenzí na Jazz Combo a smažte řádek \"vzor\": true (i s čárkou).",
-      "jmeno": "Jana K.",
-      "datum": "2026-11-20",
-      "akce": { "cs": "galavečer", "en": "gala evening", "de": "Galaabend" },
-      "text": {
-        "cs": "Sem vložte text recenze přesně tak, jak ho klient napsal.",
-        "en": "",
-        "de": ""
+      "jmeno": "Firemní galavečer",
+      "datum": "2026-09-19",
+      "akce": {
+        "cs": "firemní galavečer",
+        "en": "corporate gala",
+        "de": "Firmengala"
       },
-      "zdroj": "e-mail"
+      "text": {
+        "cs": "Dobrý den, děkujeme za páteční večer. Kapela byla skvělá, hosté si hudbu moc chválili a celá akce díky Vám měla parádní atmosféru. Děkujeme i za profesionální přístup a bezproblémovou domluvu. Rádi Vás zase pozveme!",
+        "en": "Hello David, I just wanted to thank you again for Saturday evening. The band was fantastic, our guests really enjoyed the music and you helped create a wonderful atmosphere. Thank you also for your professionalism and easy communication. We'd love to have you again!",
+        "de": "Guten Tag David, ich wollte mich noch einmal für Samstagabend bedanken. Die Band war wirklich großartig, unsere Gäste waren von der Musik begeistert und ihr habt für eine tolle Atmosphäre gesorgt. Vielen Dank auch für die professionelle und unkomplizierte Zusammenarbeit. Gerne wieder!"
+      },
+      "hvezdy": 5
+    },
+    {
+      "vzor": true,
+      "jmeno": "Městský ples",
+      "datum": "2026-02-21",
+      "akce": {
+        "cs": "reprezentační ples města",
+        "en": "municipal gala ball",
+        "de": "Repräsentationsball der Stadt"
+      },
+      "text": {
+        "cs": "Děkuejem, měli jsme na kapelu spoustu pozitivních ohlasů, lidé si pochvalovali hlavně repertoár a skvělý zvuk. Všechno proběhlo podle domluvy a za nás velká spokojenost. Mějte se hezky!",
+        "en": "Hello, thank you once again for performing at our ball. We received lots of positive feedback about the band, especially the repertoire and excellent sound. Everything went as agreed and we were very happy with the evening. All the best!",
+        "de": "Guten Tag, nochmals vielen Dank für euren Auftritt bei unserem Ball. Wir haben sehr viele positive Rückmeldungen zur Band bekommen, besonders zum Repertoire und zum tollen Klang. Alles lief wie besprochen und wir waren sehr zufrieden. Alles Gute!"
+      },
+      "hvezdy": 5
+    },
+    {
+      "vzor": true,
+      "jmeno": "Ukázka – slavnostní večer",
+      "datum": "2025-12-13",
+      "akce": {
+        "cs": "reprezentativní společenský večer",
+        "en": "formal gala evening",
+        "de": "Festlicher Galaabend"
+      },
+      "text": {
+        "cs": "Davide, hráli jste výborně a myslím, že jste skvěle odhadli, co se k večeru hodí. Ze začátku příjemný jazz a později se i pěkně zaplnil parket. Za nás moc povedené, díky celé kapele!",
+        "en": "Hi David, thanks so much for Friday's event! You played brilliantly and really knew what suited the evening. Lovely jazz at the beginning and a busy dance floor later on. A great evening from our point of view. Thanks to the whole band!",
+        "de": "Hallo David, vielen Dank für die Veranstaltung am Freitag! Ihr habt großartig gespielt und genau die richtige Musik für den Abend gefunden. Am Anfang angenehmer Jazz und später eine gut gefüllte Tanzfläche. Ein wirklich gelungener Abend. Danke an die ganze Band!"
+      },
+      "hvezdy": 5
     }
   ]
 }
