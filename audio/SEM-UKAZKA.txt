@@ -1,0 +1,2 @@
+Sem nahrajte krátkou ukázku jako ukazka.mp3 (20–40 s, MP3 128–160 kb/s, ideálně do 600 kB).
+Jakmile soubor /audio/ukazka.mp3 na webu existuje, v úvodu u fotky se samo objeví tlačítko „Poslechněte si nás“.

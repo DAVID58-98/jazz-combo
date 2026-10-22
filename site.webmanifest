@@ -1,0 +1,16 @@
+{
+  "name": "David Kleňha · Jazz Combo",
+  "short_name": "Jazz Combo",
+  "description": "Jazz Combo Davida Kleňhy: osm hudebníků se zpěvem, rytmikou a čtyřmi dechy na galavečery, plesy a firemní akce.",
+  "lang": "cs",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c201f",
+  "theme_color": "#0c201f",
+  "icons": [
+    {"src": "/favicon/favicon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/favicon/favicon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "/favicon/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
