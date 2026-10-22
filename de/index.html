@@ -34,7 +34,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#0c201f">
+<meta name="theme-color" content="#122a29">
 <link rel="preload" as="image" href="/uvodni_foto-860.webp" imagesrcset="/uvodni_foto-430.webp 430w, /uvodni_foto-645.webp 645w, /uvodni_foto-860.webp 860w, /uvodni_foto-1290.webp 1290w" imagesizes="(max-width: 860px) 80vw, 440px" fetchpriority="high">
 
 <!-- Měření návštěvnosti (GA4 / Google Ads) zatím nenasazeno. Výchozí stav souhlasu je "odmítnuto". -->
@@ -59,13 +59,13 @@
 })();</script>
 <style>
 :root{
-  --bg:#0c201f;--bg-2:#0f2827;--tile:#14302f;--tile-2:#183a38;--tile-3:#1d4441;
-  --emerald:#0f5257;--emerald-2:#157a7f;--petrol:#14302f;
+  --bg:#122a29;--bg-2:#163230;--tile:#1d3e3c;--tile-2:#224644;--tile-3:#294f4c;
+  --emerald:#0f5257;--emerald-2:#157a7f;--petrol:#1d3e3c;
   --cream:#f4f0e4;--cream-2:#e6e0cd;
   --mint:#7fb5a8;--mint-soft:#9dc2b6;--muted:#aebfb8;
   --gold:#e0a93c;--gold-2:#eec46f;--gold-deep:#a8791d;
   --on-gold:#0c201f;
-  --line:rgba(224,169,60,.18);--line-soft:rgba(157,194,182,.16);
+  --line:rgba(224,169,60,.18);--line-soft:rgba(157,194,182,.22);
   --shadow:0 30px 70px -38px rgba(0,0,0,.85);
   --radius:22px;--radius-lg:34px;--maxw:1200px;
   --font-hero:'Unbounded',sans-serif;--font-head:'Sora',sans-serif;--font-body:'Poppins',sans-serif;
@@ -109,7 +109,7 @@ img{max-width:100%;display:block}
 /* ---------- horní lišta ---------- */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:16px clamp(18px,4vw,46px);transition:background .3s,padding .3s,box-shadow .3s}
-.topbar.scrolled{background:rgba(12,32,31,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding-top:12px;padding-bottom:12px}
+.topbar.scrolled{background:rgba(18,42,41,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding-top:12px;padding-bottom:12px}
 .brand{font-family:var(--font-hero);font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--cream);white-space:nowrap}
 .brand b{color:var(--gold);font-weight:800}
 .topnav{display:flex;align-items:center;gap:clamp(18px,2.4vw,36px)}
@@ -1239,6 +1239,8 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
 #benefits .benefit h3,#benefits .benefit p{margin:0}
 }
 @media (max-width:560px){@supports (grid-template-rows:subgrid){#benefits .benefits-grid>.benefit{row-gap:10px;margin-bottom:12px}}}
+/* notová osnova u sekcí vpravo vypnutá */
+.gx-r::before{display:none}
 </style>
 </head>
 <body>
@@ -1300,7 +1302,6 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
       <p class="hero-sub">Gesang, Klavier, Kontrabass, Schlagzeug und Bläsersatz. Fünf bis acht Musiker in abgestimmter Kleidung für Galaabende, Bälle und repräsentative Firmenfeiern.</p>
       <div class="hero-cta">
         <a href="#poptavka" class="btn btn-gold">Unverbindliche Anfrage</a>
-        <a href="#lineup" class="btn btn-ghost">Die Band</a>
       </div>
     </div>
     <div class="hero-art">
@@ -1309,7 +1310,7 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
         <div class="hero-photo">
           <img src="/uvodni_foto-860.webp" srcset="/uvodni_foto-430.webp 430w, /uvodni_foto-645.webp 645w, /uvodni_foto-860.webp 860w, /uvodni_foto-1290.webp 1290w, /uvodni_foto-1720.webp 1720w" sizes="(max-width: 860px) 80vw, 440px" alt="David Kleňha, Sänger und Leiter des Jazz Combo" width="539" height="752" fetchpriority="high" decoding="async">
         </div>
-        <button type="button" class="hero-listen" id="heroListen" data-src="/audio/ukazka.mp3" aria-label="Kurze Hörprobe abspielen" hidden><span class="hl-ic" aria-hidden="true"><svg class="hl-ring" viewBox="0 0 60 60"><circle cx="30" cy="30" r="27"/></svg><svg class="hl-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6L19 12z"/></svg><svg class="hl-pause" viewBox="0 0 24 24"><path d="M6.5 5h4v14h-4zM13.5 5h4v14h-4z"/></svg></span><span class="hl-tx" aria-hidden="true"><b>Hören Sie rein</b><span class="hl-t">kurze Hörprobe</span></span></button>
+        <button type="button" class="hero-listen" id="heroListen" data-src="/audio.mp3" aria-label="Kurze Hörprobe abspielen" hidden><span class="hl-ic" aria-hidden="true"><svg class="hl-ring" viewBox="0 0 60 60"><circle cx="30" cy="30" r="27"/></svg><svg class="hl-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6L19 12z"/></svg><svg class="hl-pause" viewBox="0 0 24 24"><path d="M6.5 5h4v14h-4zM13.5 5h4v14h-4z"/></svg></span><span class="hl-tx" aria-hidden="true"><b>Hören Sie rein</b><span class="hl-t">kurze Hörprobe</span></span></button>
         <div class="name-badge">David&nbsp;Kleňha<span>Bandleader &amp; Gesang</span></div>
       </div>
     </div>
@@ -1321,7 +1322,7 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
     <div class="center">
       <span class="eyebrow">Musiker</span>
       <h2 class="section-title">Wer für Sie spielt</h2>
-      <p class="section-lead">Bis zu acht professionelle Musiker aus führenden tschechischen Big Bands und Orchestern.</p>
+      <p class="section-lead">Bis zu acht professionelle Musiker aus führenden tschechischen Big Bands.</p>
     </div>
     <div class="band">
       <article class="lineup-card leader">
@@ -1443,14 +1444,14 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
       </div>
     </div>
     <div class="bio-store" hidden>
-      <div id="bio-david-klenha"><p>David Kleňha leitet das Jazz Combo, seine größte Besetzung: bis zu acht Musiker mit vier Bläsern, die den Klang einer Big Band auch in Säle bringen, in die kein ganzes Orchester passt.</p><p>David Kleňha ist Jazzsänger. Er tritt mit eigenen Besetzungen vom Duo bis zum Jazz Combo auf und arbeitet solistisch mit Jazz-Big-Bands und Orchestern, mit denen er auch in Theatern spielt. Sein Repertoire baut auf Jazz- und Swing-Standards, Balladen und tschechischen Klassikern auf.</p></div>
-      <div id="bio-jaroslav-barta"><p>Jaroslav Bárta spielt im Jazz Combo Klavier. Mit Kontrabass und Schlagzeug hält er das harmonische Fundament, auf dem die Bläsersektion aufbaut.</p><p>Absolvent der Musikwissenschaft an der Masaryk-Universität sowie für Klavier und Komposition am Jaroslav-Ježek-Konservatorium in Prag, wo er heute selbst Jazzinterpretation unterrichtet. Ein vielseitiger Pianist und Komponist, der mit Lenka Filipová, Chantal Poullain und der Big Band von Felix Slováček zusammengearbeitet hat.</p></div>
-      <div id="bio-jan-greifoner"><p>Jan Greifoner spielt im Jazz Combo Kontrabass. Gemeinsam mit dem Schlagzeug bildet er die Rhythmusgruppe, die die ganze Band trägt, zum Zuhören wie zum Tanzen.</p><p>Absolvent des Jaroslav-Ježek-Konservatoriums, ein erfahrener Kontrabassist mit starken Wurzeln in Jazz, Swing und traditioneller Musik. Er spielte in führenden Formationen wie J.J. Jazzman, Matěj Benko Trio oder Polydor Jazz Sextet und begleitet führende tschechische Jazzsängerinnen wie Eva Emingerová und Jana Koubková.</p></div>
-      <div id="bio-frantisek-kukula"><p>František Kukula spielt im Jazz Combo Schlagzeug, das der Band Zug gibt und das Tempo hält, wenn getanzt wird.</p><p>Absolvent des Jaroslav-Ježek-Konservatoriums in der Klasse von Dan Šoltis. Er spielt mit Fortet, Yo Soy Indigo, Bizarre Band, Kukeecha Trio, Elena Sonenshine Quartet und Martin Hrubec Trio und schreibt gemeinsam mit dem Pianisten Robin Galia eigene Musik für das Ensemble Osmosis.</p></div>
-      <div id="bio-marketa-greifonerova"><p>Markéta Greifonerová spielt im Jazz Combo Altsaxophon und Klarinette.</p><p>Absolventin des Jaroslav-Ježek-Konservatoriums und der Prager Musikakademie HAMU, wo sie bei František Kop und Felix Slováček studierte. Sie gehört zu den gefragten Big-Band-Musikerinnen und spielte im RTV Big Band von Felix Slováček, in den Orchestern von Václav Hybš und Karel Vlach sowie in der Big Band von Milan Svoboda. 2011 wählte sie der Tschechische Rundfunk für das EBU European Jazz Orchestra aus, mit dem sie durch Europa tourte.</p></div>
-      <div id="bio-david-farek"><p>David Fárek spielt im Jazz Combo Tenorsaxophon und Flöte.</p><p>Saxophonist, Klarinettist und Flötist aus führenden tschechischen Big Bands: der Big Band des Tschechischen Rundfunks, dem Orchester Karel Vlach, der St Blaise Big Band und dem Concept Art Orchestra. Mit dem Tschechischen Nationalen Symphonieorchester spielt er in den Projekten Loop Jazz Orchestra, Jazz on Screen und Blues Brothers und tritt im Musiktheater Karlín auf.</p></div>
-      <div id="bio-martin-juzl"><p>Martin Jůzl spielt im Jazz Combo Trompete.</p><p>Er stammt aus Cheb, studierte klassische Trompete am Prager Konservatorium und widmet sich heute vor allem dem Jazz. Er spielt im Jazz Dock Orchestra, in den Projekten Bohemia After Dark und Miss Mikey May sowie mit dem Trio At Ease.</p></div>
-      <div id="bio-zdenek-kram"><p>Zdeněk Krám spielt im Jazz Combo Posaune.</p><p>Posaunist, der seit 1998 die Big Band Karlovy Vary leitet. Mit dem Orchester führt er das Erbe des Gründers Milan Hart fort und spielt Swing und Jazz für alle Generationen.</p></div>
+      <div id="bio-david-klenha"><p>David Kleňha leitet <strong>das Jazz Combo, seine größte Besetzung</strong>: bis zu acht Musiker mit vier Bläsern, die den Klang einer Big Band auch in Säle bringen, in die kein ganzes Orchester passt.</p><p>David Kleňha ist <strong>Jazzsänger</strong>. Er tritt mit eigenen Besetzungen vom Duo bis zum Jazz Combo auf und arbeitet solistisch mit Jazz-Big-Bands und Orchestern, mit denen er auch in Theatern spielt. Sein Repertoire baut auf Jazz- und Swing-Standards, Balladen und tschechischen Klassikern auf.</p></div>
+      <div id="bio-jaroslav-barta"><p>Jaroslav Bárta spielt im Jazz Combo Klavier. Mit Kontrabass und Schlagzeug hält er das harmonische Fundament, auf dem die Bläsersektion aufbaut.</p><p>Absolvent der Musikwissenschaft an der Masaryk-Universität sowie für Klavier und Komposition am <strong>Jaroslav-Ježek-Konservatorium in Prag</strong>, wo er heute selbst Jazzinterpretation unterrichtet. Ein vielseitiger Pianist und Komponist, der mit Lenka Filipová, Chantal Poullain und der Big Band von Felix Slováček zusammengearbeitet hat.</p></div>
+      <div id="bio-jan-greifoner"><p>Jan Greifoner spielt im Jazz Combo Kontrabass. Gemeinsam mit dem Schlagzeug bildet er die Rhythmusgruppe, die die ganze Band trägt, zum Zuhören wie zum Tanzen.</p><p>Absolvent des <strong>Jaroslav-Ježek-Konservatoriums</strong>, ein erfahrener Kontrabassist mit starken Wurzeln in Jazz, Swing und traditioneller Musik. Er spielte in führenden Formationen wie J.J. Jazzman, Matěj Benko Trio oder Polydor Jazz Sextet und begleitet führende tschechische Jazzsängerinnen wie <strong>Eva Emingerová und Jana Koubková</strong>.</p></div>
+      <div id="bio-frantisek-kukula"><p>František Kukula spielt im Jazz Combo Schlagzeug, das der Band Zug gibt und das Tempo hält, wenn getanzt wird.</p><p>Absolvent des <strong>Jaroslav-Ježek-Konservatoriums</strong> in der Klasse von Dan Šoltis. Er spielt mit Fortet, Yo Soy Indigo, Bizarre Band, Kukeecha Trio, Elena Sonenshine Quartet und Martin Hrubec Trio und schreibt gemeinsam mit dem Pianisten Robin Galia eigene Musik für das Ensemble <strong>Osmosis</strong>.</p></div>
+      <div id="bio-marketa-greifonerova"><p>Markéta Greifonerová spielt im Jazz Combo Altsaxophon und Klarinette.</p><p>Absolventin des Jaroslav-Ježek-Konservatoriums und der Prager Musikakademie HAMU, wo sie bei František Kop und Felix Slováček studierte. Sie gehört zu den gefragten Big-Band-Musikerinnen und spielte im <strong>RTV Big Band von Felix Slováček</strong>, in den Orchestern von Václav Hybš und Karel Vlach sowie in der Big Band von Milan Svoboda. 2011 wählte sie der Tschechische Rundfunk für das <strong>EBU European Jazz Orchestra</strong> aus, mit dem sie durch Europa tourte.</p></div>
+      <div id="bio-david-farek"><p>David Fárek spielt im Jazz Combo Tenorsaxophon und Flöte.</p><p>Saxophonist, Klarinettist und Flötist aus führenden tschechischen Big Bands: der <strong>Big Band des Tschechischen Rundfunks</strong>, dem <strong>Orchester Karel Vlach</strong>, der St Blaise Big Band und dem Concept Art Orchestra. Mit dem Tschechischen Nationalen Symphonieorchester spielt er in den Projekten Loop Jazz Orchestra, Jazz on Screen und Blues Brothers und tritt im Musiktheater Karlín auf.</p></div>
+      <div id="bio-martin-juzl"><p>Martin Jůzl spielt im Jazz Combo Trompete.</p><p>Er stammt aus Cheb, studierte klassische Trompete am Prager Konservatorium und widmet sich heute vor allem dem Jazz. Er spielt im <strong>Jazz Dock Orchestra</strong>, in den Projekten Bohemia After Dark und Miss Mikey May sowie mit dem Trio At Ease.</p></div>
+      <div id="bio-zdenek-kram"><p>Zdeněk Krám spielt im Jazz Combo Posaune.</p><p>Posaunist, der seit 1998 die <strong>Big Band Karlovy Vary</strong> leitet. Mit dem Orchester führt er das Erbe des Gründers Milan Hart fort und spielt Swing und Jazz für alle Generationen.</p></div>
     </div>
   </div>
 </section>
@@ -1472,9 +1473,9 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
 <div class="stats-band reveal">
   <div class="wrap">
     <div class="stats-strip">
-      <div class="stat"><div class="num" data-count="8" data-suffix="">8</div><div class="lab">Musiker in voller Besetzung</div></div>
-      <div class="stat"><div class="num" data-count="4" data-suffix="">4</div><div class="lab">Bläser</div></div>
-      <div class="stat"><div class="num" data-count="320" data-suffix="+">320+</div><div class="lab">Auftritte unserer Besetzungen</div></div>
+      <div class="stat"><div class="num" data-count="50" data-suffix="+">50+</div><div class="lab">Titel im Repertoire</div></div>
+      <div class="stat"><div class="num" data-count="150" data-suffix="+">150+</div><div class="lab">Auftritte unserer Besetzungen</div></div>
+      <div class="stat"><div class="num" data-count="10" data-suffix="+">10+</div><div class="lab">Jahre auf der Bühne</div></div>
     </div>
   </div>
 </div>
@@ -2015,9 +2016,16 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
   })();
 
   /* ---- galerie: fotky z media.js, bez nich zůstanou připravené rámečky ---- */
+  /* fotky: přednostně seznam z media.js, jinak /foto/galerie.json (generuje GitHub Action „Galerie“, jako na ostatních webech) */
   (function(){
+    var own=(M.photos||[]).filter(function(p){return p&&p.file;});
+    if(own.length){jcGallery(own);return;}
+    if(!window.fetch)return;
+    fetch('/foto/galerie.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;})
+      .then(function(j){if(j&&j.files&&j.files.length)jcGallery(j.files.map(function(f){return {file:f};}));})['catch'](function(){});
+  })();
+  function jcGallery(files){
     var slider=$('galSlider'),track=$('galTrack');if(!track)return;
-    var files=(M.photos||[]).filter(function(p){return p&&p.file;});
     var N=files.length;if(!N)return;
     var lang=document.documentElement.lang;
     function altOf(i){var a=files[i].alt;return (a&&(a[lang]||a.cs))||fmt(T.photoAlt,{n:i+1});}
@@ -2065,7 +2073,7 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
     $('galLbPrev').addEventListener('click',function(e){e.stopPropagation();show(cur-1);});
     lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
     document.addEventListener('keydown',function(e){if(!lb.classList.contains('show'))return;if(e.key==='Escape')closeLB();else if(e.key==='ArrowRight')show(cur+1);else if(e.key==='ArrowLeft')show(cur-1);});
-  })();
+  }
 
   /* ---- videoukázky: data z media.js, bez nich zůstanou připravené bloby ---- */
   (function(){
