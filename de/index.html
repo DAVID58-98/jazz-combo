@@ -1321,6 +1321,16 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
 }
 /* mobil: repertoár nižší */
 @container (max-width:719px){.jb-stage{min-height:210px}.jb-spin{width:min(170px,46cqi)}.jb-tt{top:38px;bottom:36px}.jb-list{height:268px}}
+
+/* ===== úpravy 8: zaškrtávátko jako samostatný prvek (Safari na iPhonu nekreslí ::after na inputu správně) ===== */
+.consent{position:relative}
+.consent input{position:absolute!important;left:0;top:1px;width:20px!important;height:20px!important;min-width:0!important;min-height:0!important;margin:0!important;opacity:0;z-index:1;cursor:pointer}
+.consent input::after{display:none!important}
+.consent .cbx{flex:none;box-sizing:border-box;width:20px;height:20px;margin-top:1px;border:1.5px solid var(--gold);border-radius:6px;background:rgba(244,240,228,.06);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.consent .cbx svg{display:block;width:13px;height:13px;fill:none;stroke:var(--on-gold);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .15s}
+.consent input:checked+.cbx{background:var(--gold)}
+.consent input:checked+.cbx svg{opacity:1}
+.consent input:focus-visible+.cbx{outline:2px solid var(--gold);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -1750,7 +1760,7 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
               <textarea id="zprava" name="message" autocomplete="off" placeholder="Ort, Größe des Raums, Gästezahl, Firmen-ID"></textarea>
             </div>
             <div class="field full">
-              <label class="consent"><input type="checkbox" id="consent" required><span>Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="/de/gdpr.html" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.</span></label>
+              <label class="consent"><input type="checkbox" id="consent" required><span class="cbx" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2.5 7.4l3 3L11.6 3.9"/></svg></span><span>Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="/de/gdpr.html" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.</span></label>
             </div>
           </div>
           <div class="calc-submit">
@@ -2213,10 +2223,10 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
       }
       function go(){Array.prototype.forEach.call(track.querySelectorAll('image.yt-th'),function(im){
         var vert=im.getAttribute('data-vert')==='1';
-        load(im.getAttribute('data-yt'),vert,function(r){fit(im,r.w,r.h,vert);im.setAttribute('href',r.u);});
+        load(im.getAttribute('data-yt'),vert,function(r){var n=document.createElementNS('http://www.w3.org/2000/svg','image');['clip-path','preserveAspectRatio','class'].forEach(function(a){if(im.getAttribute(a))n.setAttribute(a,im.getAttribute(a));});fit(n,r.w,r.h,vert);n.setAttribute('href',r.u);n.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href',r.u);if(im.parentNode)im.parentNode.replaceChild(n,im);});  /* nový prvek místo změny adresy: Safari ho jinak nemusí překreslit */
       });}
       /* náhledy se stahují až když se návštěvník k videím přiblíží */
-      if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();go();}},{rootMargin:'700px 0px'});io.observe(track);}else go();
+      var sec=document.getElementById('poslech')||slider,gone=false;function once(){if(gone)return;gone=true;go();}if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.disconnect();once();}});},{rootMargin:'700px 0px'});io.observe(sec);}else once();window.addEventListener('load',function(){setTimeout(once,6000);});  /* pojistka: nejpozději 6 s po načtení */
     })();
     var dots=$('vidDots'),pos=CLONES,tries=0;
     if(NV<2){$('vidPrev').hidden=true;$('vidNext').hidden=true;}
