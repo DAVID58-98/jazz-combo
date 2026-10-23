@@ -1,5 +1,5 @@
 /* =========================================================
-   motion.js — pohybové efekty a vylepšení webů souborů (verze 19)
+   motion.js — pohybové efekty a vylepšení webů souborů (verze 20)
    Načítá se s defer. Vše je nadstavba nad hotovým HTML:
    když skript chybí, web funguje a vypadá jako dřív.
    ========================================================= */
@@ -374,10 +374,14 @@ later('vidwaves',function(){
   function rgb(v,f){var h=(css.getPropertyValue(v)||'').trim().replace('#','');if(h.length!==6)return f;return parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16)}
   var CBAR=rgb('--wave',rgb('--emerald-2','21,122,127'));
   /* vlny vyrůstají přímo zpoza blobu: pro každý paprsek se zjistí, kde má blob okraj (viewBox 210) */
+  var OUTL={};
   function outline(it,fallback){var ro=new Float32Array(N),ph=$('.vid-photo',it.blob),pa=ph&&$('clipPath path',ph),i;
     for(i=0;i<N;i++)ro[i]=0;
-    if(pa){try{var sc=ph.getBoundingClientRect().width/210,tl=pa.getTotalLength();
-      for(var k=0;k<360;k++){var q=pa.getPointAtLength(tl*k/360),th=Math.atan2(q.y,q.x),ix=Math.round(((th+Math.PI/2)/TAU*N)%N+N)%N,r=Math.hypot(q.x,q.y)*sc;if(r>ro[ix])ro[ix]=r}}catch(e){}}
+    /* v20: obrys každého tvaru se změří jen jednou (5 tvarů místo 15 dlaždic × 360 bodů) – na mobilu to blokovalo stránku i několik sekund */
+    if(pa){try{var sc=ph.getBoundingClientRect().width/210,dk=pa.getAttribute('d'),raw=OUTL[dk];
+      if(!raw){raw=OUTL[dk]=new Float32Array(N);var tl=pa.getTotalLength();
+        for(var k=0;k<180;k++){var q=pa.getPointAtLength(tl*k/180),th=Math.atan2(q.y,q.x),ix=Math.round(((th+Math.PI/2)/TAU*N)%N+N)%N,r=Math.hypot(q.x,q.y);if(r>raw[ix])raw[ix]=r}}
+      for(var k2=0;k2<N;k2++)if(raw[k2])ro[k2]=raw[k2]*sc}catch(e){}}
     var any=false;for(i=0;i<N;i++)if(ro[i])any=true;
     if(!any){for(i=0;i<N;i++)ro[i]=fallback;return ro}
     for(i=0;i<N;i++)if(!ro[i]){var l=i,r2=i;while(!ro[(l+N)%N])l--;while(!ro[r2%N])r2++;var f=(i-l)/(r2-l);ro[i]=ro[(l+N)%N]*(1-f)+ro[r2%N]*f}
@@ -407,7 +411,8 @@ later('vidwaves',function(){
     if(now-last>=iv-.6){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;for(var k=0;k<active.length;k++)paint(active[k],time,dt,false)}
     frame=requestAnimationFrame(loop)}
   function sync(){if(running()){if(!frame){last=0;frame=requestAnimationFrame(loop)}}else if(frame){cancelAnimationFrame(frame);frame=0;last=0}}
-  items.forEach(size);
+  /* v20: plátna se připraví po třech v klidových chvílích prohlížeče, ne všechna najednou */
+  (function chunk(i){var e=Math.min(items.length,i+3);for(;i<e;i++)size(items[i]);if(i<items.length)idle(function(){chunk(i)})})(0);
   if(window.MutationObserver){var mt=new MutationObserver(function(){resize()});items.forEach(function(it){var ph=$('.vid-photo',it.blob);if(ph)mt.observe(ph,{childList:true})})}
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){var it=null;for(var k=0;k<items.length;k++)if(items[k].cv===e.target)it=items[k];if(!it)return;
