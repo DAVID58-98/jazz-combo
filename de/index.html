@@ -1273,13 +1273,19 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
 #galerie{padding-top:clamp(64px,7vw,104px)!important}
 /* kroužky vlevo u sekcí (videoukázky aj.) pryč */
 .gx-l::before{display:none}
-/* rotující nadpisy v plné velikosti: textový sloupec o kus širší, fotka o kus menší */
-.hero-grid{grid-template-columns:1.2fr .8fr}
-@media (min-width:861px) and (max-width:1100px){.hero-grid{grid-template-columns:1.15fr .85fr}}
+/* úvod: fotka v plné velikosti (560 px) a nadpisy v plné velikosti – úvod je širší než zbytek webu */
+.hero .wrap{max-width:1340px}
+@media (min-width:861px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) auto}
+  .hero-art .ceq-wrap{width:min(560px,43vw)}
+  .hero-slogans{font-size:clamp(31px,4.25vw,56px)}
+}
 @media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
-.hero-art{min-width:0}.hero-art .ceq-wrap{max-width:100%}
+/* PC a tablet: ukázka vedle „Nezávazné poptávky“, nezaclání fotce */
+.hero-cta{align-items:center}
+.hero-cta .hero-listen{position:relative;left:auto;right:auto;top:auto;bottom:auto;margin:0}
 /* jen telefony užší než 390 px: písmo se poměrně stáhne, aby se nadpis neusekl */
-@media (max-width:389px){.hero-slogans{font-size:7.9vw}}
+@media (max-width:389px){.hero-slogans{font-size:7.9vw!important}}
 /* telefon: tlačítko ukázky uprostřed pod fotkou, pak menší mezera a text */
 @media (max-width:560px){.hero-listen{left:0;right:0;margin:0 auto;width:max-content;bottom:-30px}.hero-art{margin-bottom:38px}}
 /* levý blob: jemně světle zlatý, zrcadlově k pravému (střed 200 px od okraje), posouvá se při rolování */
@@ -1296,7 +1302,8 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
 @media (max-width:560px){.map-tile{padding:24px 18px}.map-wrap{gap:14px}.legend{gap:8px;margin-top:16px}.legend-row{font-size:13px;gap:10px}.legend-dot{width:12px;height:12px}#map .section-lead{margin-bottom:0}.cz-map{max-width:82%}}
 /* souhlas ve formuláři: vlastní zaškrtávátko, ne černý čtverec */
 .consent input{-webkit-appearance:none;appearance:none;width:20px;height:20px;border:1.5px solid var(--gold);border-radius:6px;background:rgba(244,240,228,.06);display:grid;place-items:center;transition:background .2s}
-.consent input::after{content:"";width:5px;height:10px;border:solid var(--on-gold);border-width:0 2.4px 2.4px 0;transform:rotate(45deg) translate(-1px,-1px);opacity:0}
+.consent input{position:relative;display:block;flex:none;min-width:20px;min-height:20px;margin:1px 0 0;padding:0}
+.consent input::after{content:"";position:absolute;left:5.6px;top:1.6px;width:5px;height:10px;border:solid var(--on-gold);border-width:0 2.4px 2.4px 0;transform:rotate(45deg);opacity:0}
 .consent input:checked{background:var(--gold)}
 .consent input:checked::after{opacity:1}
 .consent input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
@@ -2169,7 +2176,7 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
       return '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><defs><clipPath id="'+cid+'"><path d="'+BLOBS[bi%BLOBS.length]+'"/></clipPath></defs>'+
         '<path class="ph-bg" d="'+BLOBS[bi%BLOBS.length]+'"/>'+(v.thumb?'<image href="/video/'+esc(v.thumb)+'" x="-105" y="-105" width="210" height="210" preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>':
         /* bez vlastního náhledu: snímek z YouTube; u videí na výšku se ořízne černý okraj */
-        '<image href="https://i.ytimg.com/vi/'+encodeURIComponent(v.yt)+'/hqdefault.jpg" '+(v.vert?'x="-250" y="-187.5" width="500" height="375"':'x="-187" y="-140" width="374" height="280"')+' preserveAspectRatio="none" clip-path="url(#'+cid+')" onerror="this.remove()"/>')+'</svg>';
+        '<image class="yt-th" data-yt="'+esc(v.yt)+'" data-vert="'+(v.vert?1:0)+'" x="-105" y="-105" width="210" height="210" preserveAspectRatio="none" clip-path="url(#'+cid+')"/>')+'</svg>';
     }
     function buildItem(v,k,src,clone){
       var it=el('div','vid-item');
@@ -2188,6 +2195,27 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
     for(i=0;i<NV;i++)seq.push({i:i,c:false});
     for(i=0;i<CLONES;i++)seq.push({i:i%NV,c:true});
     seq.forEach(function(s,k){track.appendChild(buildItem(vids[s.i],k,s.i,s.c));});
+    /* náhledy z YouTube: zkusí se nejostřejší varianta (Shorts: oardefault na výšku), menší/šedé náhradní obrázky se přeskočí */
+    (function(){
+      var cache={};
+      function fit(im,w,h,vert){
+        var cw,ch;                                    /* skutečný obsah videa uvnitř snímku (bez černých pruhů) */
+        if(vert){if(h>w){cw=w;ch=h;}else{ch=h;cw=h*9/16;}}else{cw=w;ch=Math.min(h,w*9/16);}
+        var s=Math.max(210/cw,210/ch),W=w*s,H=h*s;
+        im.setAttribute('width',W.toFixed(1));im.setAttribute('height',H.toFixed(1));im.setAttribute('x',(-W/2).toFixed(1));im.setAttribute('y',(-H/2).toFixed(1));
+      }
+      function load(id,vert,cb){
+        if(cache[id]){cache[id].push(cb);return;}cache[id]=[cb];
+        var list=(vert?['oardefault']:[]).concat(['maxresdefault','sddefault','hqdefault']),k=0;
+        (function next(){if(k>=list.length)return;var u='https://i.ytimg.com/vi/'+encodeURIComponent(id)+'/'+list[k++]+'.jpg',t=new Image();
+          t.onload=function(){if(t.naturalWidth<200){next();return;}var r={u:u,w:t.naturalWidth,h:t.naturalHeight};cache[id].forEach(function(f){f(r);});cache[id]={done:r,push:function(f){f(r);}};};
+          t.onerror=next;t.src=u;})();
+      }
+      Array.prototype.forEach.call(track.querySelectorAll('image.yt-th'),function(im){
+        var vert=im.getAttribute('data-vert')==='1';
+        load(im.getAttribute('data-yt'),vert,function(r){fit(im,r.w,r.h,vert);im.setAttribute('href',r.u);});
+      });
+    })();
     var dots=$('vidDots'),pos=CLONES,tries=0;
     if(NV<2){$('vidPrev').hidden=true;$('vidNext').hidden=true;}
     function real(){return ((pos-CLONES)%NV+NV)%NV;}
@@ -2419,6 +2447,15 @@ html #kontakt{padding-bottom:clamp(96px,13vw,180px)}
     var x=0,y=0,raf=0;function draw(){raf=0;sp.style.transform='translate3d('+x+'px,'+y+'px,0)';}
     t.addEventListener('pointermove',function(e){var r=t.getBoundingClientRect();x=e.clientX-r.left;y=e.clientY-r.top;if(!raf)raf=requestAnimationFrame(draw);t.classList.add('lit');});
     t.addEventListener('pointerleave',function(){t.classList.remove('lit');});
+  })();
+
+
+  /* ---- tlačítko ukázky: na telefonu pod fotkou, na tabletu a PC vedle „Nezávazné poptávky“ ---- */
+  (function(){
+    var b=$('heroListen'),cta=document.querySelector('.hero-cta'),art=document.querySelector('.hero-art .ceq-wrap');if(!b||!cta||!art)return;
+    var mq=matchMedia('(max-width:560px)');
+    function place(){var to=mq.matches?art:cta;if(b.parentNode!==to)to.appendChild(b);}
+    place();if(mq.addEventListener)mq.addEventListener('change',place);else mq.addListener(place);
   })();
 
   /* ---- odkaz na nastavení cookies v patičce ---- */
