@@ -1,5 +1,5 @@
 /* =========================================================
-   motion.js — pohybové efekty a vylepšení webů souborů (verze 17)
+   motion.js — pohybové efekty a vylepšení webů souborů (verze 18)
    Načítá se s defer. Vše je nadstavba nad hotovým HTML:
    když skript chybí, web funguje a vypadá jako dřív.
    ========================================================= */
@@ -533,24 +533,41 @@ later('listen',function(){
   var src=b.getAttribute('data-src'),sub=$('.hl-t',b),sub0=sub?sub.textContent:'';
   function show(){b.hidden=false;if(!RM)A(b,[{opacity:0,transform:'translateY(10px) scale(.92)'},{opacity:1,transform:'none'}],{duration:520,easing:'cubic-bezier(.2,.8,.2,1)'})}
   if(window.fetch)fetch(src,{method:'HEAD',cache:'no-store'}).then(function(r){if(r.ok)show()}).catch(function(){});
-  var au=null,ctx=null,an=null,buf=null,raf=0,lvl=0;
+  var au=null,ctx=null,an=null,buf=null,fbuf=null,raf=0,lvl=0;
+  /* v18: ekvalizér kolem kulatého tlačítka – paprsky podle frekvencí skutečné ukázky */
+  var ic=$('.hl-ic',b),eq=document.createElement('canvas'),eg=eq.getContext&&eq.getContext('2d'),EN=64,ev=new Float32Array(EN),EW=0;
+  if(eg&&ic){eq.className='hl-eq';eq.setAttribute('aria-hidden','true');b.parentNode.insertBefore(eq,b)}else eg=null;  /* za tlačítkem: paprsky jen kolem, text nepřekryjí */
+  var GOLD=(getComputedStyle(document.documentElement).getPropertyValue('--gold')||'#e0a93c').trim();
+  function eqDraw(t){if(!eg)return;var W=eq.clientWidth;if(!W)return;var dpr=Math.min(window.devicePixelRatio||1,2);
+    if(EW!==W){EW=W;eq.width=Math.round(W*dpr);eq.height=Math.round(W*dpr);eg.setTransform(dpr,0,0,dpr,0,0)}
+    var pr=b.parentNode.getBoundingClientRect(),ir=ic.getBoundingClientRect();eq.style.left=(ir.left-pr.left+ir.width/2-W/2)+'px';eq.style.top=(ir.top-pr.top+ir.height/2-W/2)+'px';
+    var c=W/2,r0=ic.offsetWidth/2+6,room=c-r0-2,i,v;
+    if(an&&fbuf)an.getByteFrequencyData(fbuf);
+    eg.clearRect(0,0,W,W);eg.lineCap='round';eg.lineWidth=2.4;eg.strokeStyle=GOLD;
+    for(i=0;i<EN;i++){var h=i<EN/2?i:EN-1-i;  /* zrcadlově: basy nahoře, výšky dole */
+      if(an&&fbuf){var bin=2+Math.round(Math.pow(h/(EN/2),1.6)*70);v=fbuf[bin]/255}else v=.35+.3*Math.sin(t/160+i*.7);
+      v=RM?.3:v;ev[i]+=(v-ev[i])*(v>ev[i]?.55:.18);
+      var a=i/EN*Math.PI*2-Math.PI/2,r1=r0+3+room*Math.min(1,ev[i]*1.15);
+      eg.globalAlpha=.45+ev[i]*.55;eg.beginPath();eg.moveTo(c+Math.cos(a)*r0,c+Math.sin(a)*r0);eg.lineTo(c+Math.cos(a)*r1,c+Math.sin(a)*r1);eg.stroke()}
+    eg.globalAlpha=1}
   function fmt(x){x=Math.max(0,Math.floor(x||0));return Math.floor(x/60)+':'+('0'+x%60).slice(-2)}
   function loop(){raf=requestAnimationFrame(loop);var v;
     if(an){an.getByteTimeDomainData(buf);var q=0;for(var i=0;i<buf.length;i++){var d=(buf[i]-128)/128;q+=d*d}v=Math.sqrt(q/buf.length)*380}
     else v=45+30*Math.sin(Date.now()/170);
+    eqDraw(Date.now());
     lvl+=(Math.min(v,90)-lvl)*.3;window.jzLvl=RM?0:lvl;
     b.style.setProperty('--p',au.duration?(au.currentTime/au.duration).toFixed(4):'0');
     if(sub)sub.textContent=fmt(au.currentTime)+(au.duration&&isFinite(au.duration)?' / '+fmt(au.duration):'')}
-  function stop(){if(!raf)return;cancelAnimationFrame(raf);raf=0;b.classList.remove('on');b.setAttribute('aria-pressed','false');if(sub)sub.textContent=sub0;
+  function stop(){if(!raf)return;cancelAnimationFrame(raf);raf=0;b.classList.remove('on');if(eg)eq.classList.remove('on');b.setAttribute('aria-pressed','false');if(sub)sub.textContent=sub0;
     (function fade(){lvl*=.82;window.jzLvl=lvl;if(lvl>.5)requestAnimationFrame(fade);else window.jzLvl=0})()}
   b.setAttribute('aria-pressed','false');
   b.addEventListener('click',function(){
     if(!au){au=new Audio(src);au.preload='auto';
       au.addEventListener('pause',stop);
       au.addEventListener('ended',function(){stop();b.style.setProperty('--p','0')});
-      try{var AC=window.AudioContext||window.webkitAudioContext;if(AC){ctx=new AC();var so=ctx.createMediaElementSource(au);an=ctx.createAnalyser();an.fftSize=512;buf=new Uint8Array(an.fftSize);so.connect(an);an.connect(ctx.destination)}}catch(e){an=null}}
+      try{var AC=window.AudioContext||window.webkitAudioContext;if(AC){ctx=new AC();var so=ctx.createMediaElementSource(au);an=ctx.createAnalyser();an.fftSize=512;an.smoothingTimeConstant=.7;buf=new Uint8Array(an.fftSize);fbuf=new Uint8Array(an.frequencyBinCount);so.connect(an);an.connect(ctx.destination)}}catch(e){an=null}}
     if(au.paused){if(ctx&&ctx.state==='suspended')ctx.resume();
-      b.classList.add('on');b.setAttribute('aria-pressed','true');if(!raf)loop();
+      b.classList.add('on');if(eg)eq.classList.add('on');b.setAttribute('aria-pressed','true');if(!raf)loop();
       var pr=au.play();if(pr&&pr.catch)pr.catch(function(){stop()})}
     else au.pause()});
 });
