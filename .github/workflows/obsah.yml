@@ -1,14 +1,16 @@
-name: Recenze a reference
+name: Recenze, reference a videa
 
-# Po každé změně recenze.json nebo reference.json vygeneruje sekce
-# „Co nám píší klienti“ a „Pro koho jsme hráli“ do CZ, EN i DE stránky.
-# Ručně: záložka Actions → Recenze a reference → Run workflow.
+# Po každé změně recenze.json, reference.json nebo videa.json vygeneruje sekce
+# „Co nám píší klienti“ a „Pro koho jsme hráli“ do CZ, EN i DE stránky
+# a seznam videí do media.js (Videoukázky).
+# Ručně: záložka Actions → Recenze, reference a videa → Run workflow.
 on:
   push:
     branches: [main]
     paths:
       - 'recenze.json'
       - 'reference.json'
+      - 'videa.json'
       - 'nastroje/obsah.py'
   workflow_dispatch:
 
@@ -25,18 +27,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: main
 
-      - name: Vygenerovat recenze a reference
+      - name: Vygenerovat recenze, reference a videa
         run: python3 nastroje/obsah.py .
 
       - name: Uložit, pokud se něco změnilo
         id: commit
         shell: bash
         run: |
-          git add index.html en/index.html de/index.html llms.txt
+          git add index.html en/index.html de/index.html llms.txt media.js
           if git diff --cached --quiet; then
             echo "Stránky se nezměnily."
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -44,7 +46,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Recenze a reference: aktualizace"
+          git commit -m "Recenze, reference a videa: aktualizace"
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
