@@ -1,0 +1,94 @@
+{
+  "_navod": "Návod je v souboru NAVOD-videa.md",
+  "videa": [
+    {
+      "url": "https://youtube.com/shorts/a3JUoQfeBxE",
+      "nazev": "Fly Me to the Moon",
+      "misto": {
+        "cs": "Galavečer · Obecní dům, Praha",
+        "en": "Gala evening · Municipal House, Prague",
+        "de": "Galaabend · Gemeindehaus, Prag"
+      }
+    },
+    {
+      "url": "https://youtube.com/shorts/mQ8mido7Xcc",
+      "nazev": "What a Wonderful World",
+      "misto": {
+        "cs": "Firemní večer · Občanská plovárna, Praha",
+        "en": "Corporate evening · Občanská plovárna, Prague",
+        "de": "Firmenabend · Občanská plovárna, Prag"
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=hAwyRm_FjOc",
+      "nazev": "Don't Get Around Much Anymore",
+      "misto": {
+        "cs": "Firemní večer · Občanská plovárna, Praha",
+        "en": "Corporate evening · Občanská plovárna, Prague",
+        "de": "Firmenabend · Občanská plovárna, Prag"
+      }
+    },
+    {
+      "url": "https://youtube.com/shorts/bizzWQf13hQ",
+      "nazev": "Route 66",
+      "misto": {
+        "cs": "Firemní večer · Praha-Benice",
+        "en": "Corporate evening · Prague-Benice",
+        "de": "Firmenabend · Prag-Benice"
+      }
+    },
+    {
+      "url": "https://youtube.com/shorts/u_BV76EtrFU",
+      "nazev": "Sway",
+      "misto": {
+        "cs": "Galavečer · Obecní dům, Praha",
+        "en": "Gala evening · Municipal House, Prague",
+        "de": "Galaabend · Gemeindehaus, Prag"
+      }
+    },
+    {
+      "url": "https://youtube.com/shorts/5ba3IbNXGCY",
+      "nazev": {
+        "cs": "Instrumentální ukázka",
+        "en": "Instrumental piece",
+        "de": "Instrumentalstück"
+      },
+      "misto": {
+        "cs": "Firemní večer · Občanská plovárna, Praha",
+        "en": "Corporate evening · Občanská plovárna, Prague",
+        "de": "Firmenabend · Občanská plovárna, Prag"
+      }
+    },
+    {
+      "url": "https://youtube.com/shorts/9IHGvyik7O0",
+      "nazev": "The Girl from Ipanema",
+      "misto": {
+        "cs": "Galavečer · Obecní dům, Praha",
+        "en": "Gala evening · Municipal House, Prague",
+        "de": "Galaabend · Gemeindehaus, Prag"
+      }
+    },
+    {
+      "url": "https://youtube.com/shorts/9-5WzJw37AY",
+      "nazev": {
+        "cs": "Instrumentální ukázka",
+        "en": "Instrumental piece",
+        "de": "Instrumentalstück"
+      },
+      "misto": {
+        "cs": "Firemní večer · Občanská plovárna, Praha",
+        "en": "Corporate evening · Občanská plovárna, Prague",
+        "de": "Firmenabend · Občanská plovárna, Prag"
+      }
+    },
+    {
+      "url": "https://youtube.com/shorts/D79zqi0o2bY",
+      "nazev": "Cheek to Cheek",
+      "misto": {
+        "cs": "Galavečer · Obecní dům, Praha",
+        "en": "Gala evening · Municipal House, Prague",
+        "de": "Galaabend · Gemeindehaus, Prag"
+      }
+    }
+  ]
+}

@@ -3,6 +3,8 @@
 Vygeneruje sekce „Co nám píší klienti“ a „Pro koho jsme hráli“ z recenze.json a reference.json
 do index.html, en/index.html a de/index.html (mezi značky <!-- RECENZE:START/END --> a
 <!-- REFERENCE:START/END -->). Spouští ho GitHub Actions po každé změně JSON souborů.
+Videoukázky: z videa.json zapíše seznam videí do media.js (mezi značky // VIDEA:START a // VIDEA:END);
+náhledy z YouTube si podle ID vybírá až stránka sama.
 """
 import json, re, sys, html, datetime, pathlib
 
@@ -127,11 +129,85 @@ def sipky(s, pocet):
     return s
 
 
+YT_ID = re.compile(r'(?:youtu\.be/|[?&]v=|/shorts/|/embed/|/live/)([A-Za-z0-9_-]{11})(?![A-Za-z0-9_-])')
+
+
+def yt_id(url):
+    m = YT_ID.search(url or '')
+    return m.group(1) if m else None
+
+
+def text_nebo_preklady(pole, kde, nazev_pole):
+    """Text, nebo {"cs": …, "en": …, "de": …} (stačí "cs"; chybějící jazyk stránka nahradí češtinou)."""
+    if isinstance(pole, str):
+        return pole.strip()
+    if isinstance(pole, dict) and isinstance(pole.get('cs'), str) and pole['cs'].strip():
+        return {k: pole[k] for k in ('cs', 'en', 'de') if isinstance(pole.get(k), str) and pole[k].strip()}
+    chyba(f'{kde}: „{nazev_pole}“ musí být text, nebo {{"cs": …, "en": …, "de": …}} s českým textem')
+    return ''
+
+
+def videa_js(seznam):
+    """Řádky seznamu videí pro media.js."""
+    if not seznam:
+        chyba('videa.json: seznam videí je prázdný, nechte tam aspoň jedno video')
+    radky = []
+    videna = {}
+    for i, v in enumerate(seznam):
+        kde = f'videa.json, položka {i + 1} ({v.get("nazev", "?") if isinstance(v.get("nazev"), str) else "?"})'
+        if not isinstance(v, dict):
+            chyba(f'videa.json, položka {i + 1}: položka musí být ve složených závorkách {{ … }}')
+            continue
+        url = v.get('url', '')
+        vid = yt_id(url)
+        if not vid:
+            chyba(f'{kde}: v „url“ není platný odkaz na YouTube video („{url}“)')
+            continue
+        if vid in videna:
+            chyba(f'{kde}: stejné video už je v položce {videna[vid]}')
+        videna[vid] = i + 1
+        if not v.get('nazev'):
+            chyba(f'{kde}: chybí „nazev“ (název skladby)')
+            continue
+        polozka = {'name': text_nebo_preklady(v['nazev'], kde, 'nazev')}
+        if v.get('misto'):
+            polozka['place'] = text_nebo_preklady(v['misto'], kde, 'misto')
+        polozka['yt'] = vid
+        na_vysku = v.get('na_vysku')
+        if na_vysku is None:
+            na_vysku = '/shorts/' in url
+        elif not isinstance(na_vysku, bool):
+            chyba(f'{kde}: „na_vysku“ musí být true nebo false (bez uvozovek), nebo položku vynechte')
+        polozka['vert'] = bool(na_vysku)
+        nahled = v.get('nahled')
+        if nahled:
+            if not re.match(r'^video/[^/]+$', nahled):
+                chyba(f'{kde}: „nahled“ musí být soubor ve složce video, např. „video/route66.webp“')
+            elif not (ROOT / nahled).exists():
+                chyba(f'{kde}: soubor „{nahled}“ v repozitáři neexistuje')
+            else:
+                polozka['thumb'] = nahled[len('video/'):]
+        radky.append('    ' + json.dumps(polozka, ensure_ascii=False) + ',')
+    return '\n'.join(radky)
+
+
+def vloz_media(s, obsah):
+    # značky platí jen na začátku vlastního řádku (zmínka v komentáři o kus výš se nepočítá)
+    pat = re.compile(r'(^[ \t]*// VIDEA:START[^\n]*\n)(.*?)(^[ \t]*// VIDEA:END[ \t]*$)', re.S | re.M)
+    if len(pat.findall(s)) != 1:
+        sys.exit('CHYBA: v media.js chybí značky // VIDEA:START a // VIDEA:END')
+    return pat.sub(lambda m: m.group(1) + obsah + '\n' + m.group(3), s)
+
+
 def main():
     vsechny = nacti('recenze.json', 'recenze')
     # položka s "vzor": true je jen ukázka, jak recenzi vyplnit; na web se nedostane
     recenze = [r for r in vsechny if not r.get('vzor')]
     reference = nacti('reference.json', 'reference')
+    videa = nacti('videa.json', 'videa')
+    media = ROOT / 'media.js'
+    m_puvodni = media.read_text(encoding='utf-8')
+    m_novy = vloz_media(m_puvodni, videa_js(videa))  # videa se kontrolují dřív, než se cokoli zapíše
     for jazyk, soubor in PAGES.items():
         p = ROOT / soubor
         s = p.read_text(encoding='utf-8')
@@ -141,6 +217,8 @@ def main():
         s = sekce_recenzi(s, len(recenze))
         if not CHYBY:
             p.write_text(s, encoding='utf-8')
+    if not CHYBY and m_novy != m_puvodni:
+        media.write_text(m_novy, encoding='utf-8')
     llms = ROOT / 'llms.txt'
     if llms.exists() and not CHYBY:
         t = llms.read_text(encoding='utf-8')
@@ -151,7 +229,7 @@ def main():
     if CHYBY:
         sys.exit('Nic jsem nezměnil, v souborech jsou chyby:\n- ' + '\n- '.join(dict.fromkeys(CHYBY)))
     vzory = len(vsechny) - len(recenze)
-    print(f'Hotovo: {len(recenze)} recenzí, {len(reference)} referencí ({SITE}).'
+    print(f'Hotovo: {len(recenze)} recenzí, {len(reference)} referencí, {len(videa)} videí ({SITE}).'
           + (f' Vzorů, které se nezobrazují: {vzory}.' if vzory else ''))
 
 
