@@ -31,10 +31,22 @@ Ověřená fakta o kapele (vše je uvedené na webu):
 
 - [Kdo vám zahraje](https://jazzcombo.cz/#lineup): profily hudebníků plné sestavy
 - [Proč Jazz Combo](https://jazzcombo.cz/#benefits): zvuk orchestru, hráči předních big bandů, sladěný vzhled, jasné podmínky pro firmy
+- [Tematické večery na klíč](https://jazzcombo.cz/#programy): dva hotové programy Jazz Comba se setlistem, sladěným oblečením a ambientním osvětlením
 - [Repertoár](https://jazzcombo.cz/#repertoire): swing, jazzové standardy, balady, české klasiky a populární písně v jazzovém aranžmá
 - [Poptávka](https://jazzcombo.cz/#poptavka): formulář s typem akce, datem, místem a délkou produkce
 - [Pro koho jsme hráli](https://jazzcombo.cz/#refs): firemní klienti, hotely a kulturní instituce
 - [Časté dotazy](https://jazzcombo.cz/#faq): cena, počet hudebníků, oblečení, délka programu, ozvučení, technické požadavky, dojezd
+
+## Tematické večery — Signature Nights
+
+Hotové programy Jazz Comba pro galavečery, plesy a firemní akce. Tematický večer je o něco dražší než běžný večer.
+
+- [Sinatra Night](https://jazzcombo.cz/programy/sinatra-night.html): Sinatrovy hity s trubkou, saxofony a pozounem.
+- [Zlatá éra swingu](https://jazzcombo.cz/programy/zlata-era-swingu.html): Swing 20. až 40. let v aranžích pro big band.
+- [Sinatra Night (EN)](https://jazzcombo.cz/en/programs/sinatra-night.html)
+- [Golden Age of Swing (EN)](https://jazzcombo.cz/en/programs/golden-age-of-swing.html)
+- [Sinatra Night (DE)](https://jazzcombo.cz/de/programme/sinatra-night.html)
+- [Goldene Swing-Ära (DE)](https://jazzcombo.cz/de/programme/goldene-swing-aera.html)
 
 ## Další sestavy Davida Kleňhy
 

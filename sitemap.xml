@@ -31,4 +31,64 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://jazzcombo.cz/de/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jazzcombo.cz/"/>
   </url>
+  <url>
+    <loc>https://jazzcombo.cz/programy/sinatra-night.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://jazzcombo.cz/programy/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazzcombo.cz/en/programs/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jazzcombo.cz/de/programme/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazzcombo.cz/programy/sinatra-night.html"/>
+  </url>
+  <url>
+    <loc>https://jazzcombo.cz/en/programs/sinatra-night.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://jazzcombo.cz/programy/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazzcombo.cz/en/programs/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jazzcombo.cz/de/programme/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazzcombo.cz/programy/sinatra-night.html"/>
+  </url>
+  <url>
+    <loc>https://jazzcombo.cz/de/programme/sinatra-night.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://jazzcombo.cz/programy/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazzcombo.cz/en/programs/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jazzcombo.cz/de/programme/sinatra-night.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazzcombo.cz/programy/sinatra-night.html"/>
+  </url>
+  <url>
+    <loc>https://jazzcombo.cz/programy/zlata-era-swingu.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://jazzcombo.cz/programy/zlata-era-swingu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazzcombo.cz/en/programs/golden-age-of-swing.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jazzcombo.cz/de/programme/goldene-swing-aera.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazzcombo.cz/programy/zlata-era-swingu.html"/>
+  </url>
+  <url>
+    <loc>https://jazzcombo.cz/en/programs/golden-age-of-swing.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://jazzcombo.cz/programy/zlata-era-swingu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazzcombo.cz/en/programs/golden-age-of-swing.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jazzcombo.cz/de/programme/goldene-swing-aera.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazzcombo.cz/programy/zlata-era-swingu.html"/>
+  </url>
+  <url>
+    <loc>https://jazzcombo.cz/de/programme/goldene-swing-aera.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://jazzcombo.cz/programy/zlata-era-swingu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jazzcombo.cz/en/programs/golden-age-of-swing.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jazzcombo.cz/de/programme/goldene-swing-aera.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jazzcombo.cz/programy/zlata-era-swingu.html"/>
+  </url>
 </urlset>

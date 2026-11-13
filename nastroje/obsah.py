@@ -5,6 +5,8 @@ do index.html, en/index.html a de/index.html (mezi značky <!-- RECENZE:START/EN
 <!-- REFERENCE:START/END -->). Spouští ho GitHub Actions po každé změně JSON souborů.
 Videoukázky: z videa.json zapíše seznam videí do media.js (mezi značky // VIDEA:START a // VIDEA:END);
 náhledy z YouTube si podle ID vybírá až stránka sama.
+Prvních 3 videí vloží i do stránek tematických večerů (programy/, en/programs/, de/programme/,
+mezi značky <!-- VIDEA-PROGRAM:START/END -->).
 """
 import json, re, sys, html, datetime, pathlib
 
@@ -199,6 +201,65 @@ def vloz_media(s, obsah):
     return pat.sub(lambda m: m.group(1) + obsah + '\n' + m.group(3), s)
 
 
+PROG_DIRS = {'cs': 'programy', 'en': 'en/programs', 'de': 'de/programme'}
+PROG_POCET = 3
+PLAY_LABEL = {'cs': 'Přehrát video', 'en': 'Play video', 'de': 'Video abspielen'}
+
+
+def _jazyk(pole, jazyk):
+    if isinstance(pole, dict):
+        return pole.get(jazyk) or pole.get('cs') or ''
+    return pole or ''
+
+
+def program_videa_html(seznam, jazyk):
+    """Prvních několik videí pro stránky tematických večerů (náhled z YouTube, přehrání v okně na stránce)."""
+    vystup = []
+    for v in seznam:
+        if not isinstance(v, dict):
+            continue
+        vid = yt_id(v.get('url', ''))
+        if not vid or not v.get('nazev'):
+            continue
+        nazev = _jazyk(v['nazev'], jazyk)
+        misto = _jazyk(v.get('misto'), jazyk)
+        na_vysku = v.get('na_vysku')
+        if not isinstance(na_vysku, bool):
+            na_vysku = '/shorts/' in v.get('url', '')
+        nahled = v.get('nahled')
+        src = '/' + nahled if nahled else f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg'
+        upgrade = '' if nahled else f' data-ytt="{vid}"'
+        aria = PLAY_LABEL[jazyk] + ': ' + nazev + (' – ' + misto if misto else '')
+        vert = ' data-v="1"' if na_vysku else ''
+        mhtml = f'<small>{esc(misto)}</small>' if misto else ''
+        vystup.append(
+            f'<a class="vid rv" href="{html.escape(v["url"])}" target="_blank" rel="noopener" data-yt="{vid}"{vert} aria-label="{html.escape(aria)}">'
+            f'<img src="{html.escape(src)}"{upgrade} alt="" loading="lazy" decoding="async" width="400" height="400">'
+            f'<span class="pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>'
+            f'<span class="cap"><span>{esc(nazev)}</span>{mhtml}</span></a>')
+        if len(vystup) == PROG_POCET:
+            break
+    return '\n'.join(vystup)
+
+
+def programy(videa):
+    n = 0
+    for jazyk, slozka in PROG_DIRS.items():
+        d = ROOT / slozka
+        if not d.is_dir():
+            continue
+        obsah = program_videa_html(videa, jazyk)
+        for p in sorted(d.glob('*.html')):
+            s = p.read_text(encoding='utf-8')
+            if '<!-- VIDEA-PROGRAM:START' not in s:
+                continue
+            s2 = vloz(s, 'VIDEA-PROGRAM', obsah, '', str(p.relative_to(ROOT)))
+            if not CHYBY and s2 != s:
+                p.write_text(s2, encoding='utf-8')
+            n += 1
+    return n
+
+
 def main():
     vsechny = nacti('recenze.json', 'recenze')
     # položka s "vzor": true je jen ukázka, jak recenzi vyplnit; na web se nedostane
@@ -226,6 +287,8 @@ def main():
         t2 = re.sub(r'^(- Reference [^:]*: ).*$', lambda m: m.group(1) + jmena, t, count=1, flags=re.M)
         if t2 != t:
             llms.write_text(t2, encoding='utf-8')
+    if not CHYBY:
+        programy(videa)
     if CHYBY:
         sys.exit('Nic jsem nezměnil, v souborech jsou chyby:\n- ' + '\n- '.join(dict.fromkeys(CHYBY)))
     vzory = len(vsechny) - len(recenze)
