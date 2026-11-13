@@ -2,7 +2,7 @@ name: Recenze, reference a videa
 
 # Po každé změně recenze.json, reference.json nebo videa.json vygeneruje sekce
 # „Co nám píší klienti“ a „Pro koho jsme hráli“ do CZ, EN i DE stránky
-# a seznam videí do media.js (Videoukázky).
+# a seznam videí do media.js (Videoukázky) a první 3 videa do stránek tematických večerů.
 # Ručně: záložka Actions → Recenze, reference a videa → Run workflow.
 on:
   push:
@@ -39,6 +39,7 @@ jobs:
         shell: bash
         run: |
           git add index.html en/index.html de/index.html llms.txt media.js
+          for d in programy en/programs de/programme; do [ -d "$d" ] && git add "$d"; done
           if git diff --cached --quiet; then
             echo "Stránky se nezměnily."
             echo "changed=false" >> "$GITHUB_OUTPUT"
