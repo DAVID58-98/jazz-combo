@@ -10,8 +10,10 @@ Ověřená fakta o kapele (vše je uvedené na webu):
 - Velikost sestavy: 5 až 8 hudebníků podle velikosti sálu a charakteru večera; menší obsazení zachovává zpěv, rytmiku a dechy
 - Vzhled: celá kapela vystupuje ve sladěném oblečení, standardně v černé společenské, na přání podle dress codu nebo barev akce
 - Cena: od 40 000 Kč pro 6 hudebníků za standardní večer (2 hodiny živé hudby s jednou krátkou přestávkou), včetně dopravy po Praze; větší obsazení a akce mimo Prahu se nacení individuálně (doprava 21 Kč/km a čas strávený na cestě)
+- Repertoár: 67 skladeb ve veřejné ukázce na webu — swing, jazzové standardy, balady, české klasiky a populární písně v aranžích pro dechy
 - Ozvučení: sestava s dechy potřebuje ozvučení se zvukařem, které kapela zajistí za příplatek podle velikosti sálu, případně spolupracuje se zvukařem sálu
 - Doprava mimo Prahu: 21 Kč/km (7 Kč/km za vůz, kapela jede třemi vozy)
+- Technické podmínky: pro plnou osmičlennou sestavu plocha zhruba 6 × 4 m, rovný a suchý povrch, přívod elektřiny u pódia; příjezd s předstihem kvůli stavbě a zvukové zkoušce
 - Délka produkce: 1 hodina bez pauzy, 2 hodiny s jednou pauzou (standard) nebo 3 hodiny se dvěma pauzami
 - Hraje se výhradně živě, bez playbacků
 - Vhodné využití: galavečery, plesy, firemní výročí, předávání cen, reprezentativní večery měst a institucí
@@ -30,9 +32,9 @@ Ověřená fakta o kapele (vše je uvedené na webu):
 ## Sekce hlavní stránky
 
 - [Kdo vám zahraje](https://jazzcombo.cz/#lineup): profily hudebníků plné sestavy
-- [Proč Jazz Combo](https://jazzcombo.cz/#benefits): zvuk orchestru, hráči předních big bandů, sladěný vzhled, jasné podmínky pro firmy
 - [Tematické večery na klíč](https://jazzcombo.cz/#programy): dva hotové programy Jazz Comba se setlistem, sladěným oblečením a ambientním osvětlením
-- [Repertoár](https://jazzcombo.cz/#repertoire): swing, jazzové standardy, balady, české klasiky a populární písně v jazzovém aranžmá
+- [Videoukázky](https://jazzcombo.cz/#poslech): jak Jazz Combo zní naživo
+- [Repertoár](https://jazzcombo.cz/#repertoire): 67 titulů — swing, jazzové standardy, balady, české klasiky a populární písně v jazzovém aranžmá
 - [Poptávka](https://jazzcombo.cz/#poptavka): formulář s typem akce, datem, místem a délkou produkce
 - [Pro koho jsme hráli](https://jazzcombo.cz/#refs): firemní klienti, hotely a kulturní instituce
 - [Časté dotazy](https://jazzcombo.cz/#faq): cena, počet hudebníků, oblečení, délka programu, ozvučení, technické požadavky, dojezd
